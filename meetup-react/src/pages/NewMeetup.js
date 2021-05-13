@@ -8,7 +8,7 @@ const NewMeetupPage = () => {
     const history = useHistory();
 
     function addMeetupHandler(meetupData) {
-        fetch('https://react-getting-started-1c0bd-default-rtdb.europe-west1.firebasedatabase.app/meetups.json',
+        fetch('https://react-getting-started-b2b09-default-rtdb.firebaseio.com/',
         {
             method: 'POST',
             body: JSON.stringify(meetupData),
