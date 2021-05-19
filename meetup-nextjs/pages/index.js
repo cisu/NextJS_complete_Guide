@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import MeetupList from '../components/meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
@@ -14,13 +16,21 @@ const DUMMY_MEETUPS = [
     title: 'A First Meetup',
     image:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/800px-Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Some address 10, 12345 Some City',
+    address: 'Some address 10, 12345 Some City3',
     description: 'This is a second meetup!',
   },
 ];
 
 function HomePage() {
-  return <MeetupList meetups={DUMMY_MEETUPS} />;
+
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
+
+  useEffect(() => {
+    // send a http request and fetch data
+    setLoadedMeetups(DUMMY_MEETUPS);
+  },[]);
+
+  return <MeetupList meetups={loadedMeetups} />;
 }
 
 export default HomePage;

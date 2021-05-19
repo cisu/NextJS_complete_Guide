@@ -1,13 +1,11 @@
 import React from 'react'
 
-import {Fragment} from 'react';
-
 import classes from './MeetupDetail.module.css';
 
 
 const MeetupDetail = (props) => {
     return (
-        <section className={classes.detail}>
+        <section className={classes.detail }>
             <img 
             src={props.image} 
             alt={props.title}
