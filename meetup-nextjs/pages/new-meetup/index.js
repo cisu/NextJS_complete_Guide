@@ -1,13 +1,28 @@
 // our-domain.com/new-meetup
+import {useRouter} from 'next/router';
 import NewMeetupForm from '../../components/meetups/NewMeetupForm';
 
 function NewMeetupPage() {
+  const router = useRouter();
 
-    function addMeetupHandler(enteredMeetupData) {
-        console.log(enteredMeetupData)
-    }
+  async function addMeetupHandler(enteredMeetupData) {
+    const response = await fetch('/api/new-meetup', {
+      method: 'POST',
+      body: JSON.stringify(enteredMeetupData),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-    return <NewMeetupForm onAddMeetup={addMeetupHandler}/>
+    const data = await response.json();
+
+    console.log(data);
+
+    // We don't use the .push method because we don't want user can go back with the back button
+    router.replace('/');
+  }
+
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
 }
 
 export default NewMeetupPage;
